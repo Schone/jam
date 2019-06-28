@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+    <a class="btn btn-danger" href="{{ path('fos_user_security_logout') }}">
+        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+    </a>
+    <section class="container mt-5">
+        <h1 class="text-center">Wellcome {{ user.username }}</h1>
+        <div class="text-center m-5">
+            <button id="got" class="btn btn-success">View my invitations</button>
+            <button id="sent" class="btn btn-info">View sent invitations</button>
+            <button id="new" class="btn btn-primary">Send new invitation</button>
+        </div>
+        <div id="info" class="m-5">
+
+        </div>
+        <div id="form">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
